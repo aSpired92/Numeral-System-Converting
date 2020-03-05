@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 		{
 			cout<<"Do You want to convert another number? (y/n): ";
 			cin>>again;
+			cout<<endl;
 			if(again=='y')
 			{
 				break;
