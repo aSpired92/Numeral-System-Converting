@@ -9,6 +9,7 @@ using namespace std;
 
 string convert(string toconv, int before, int after);
 string intToString(int integer);
+bool validation(string forvalid, int system);
 
 int main(int argc, char *argv[]) 
 {
@@ -21,6 +22,12 @@ int main(int argc, char *argv[])
 	cin >> number;
 	cout << "Numeral system of number: ";
 	cin >> presys;
+	if (!validation(number,presys))
+	{
+		cout<<"Wrong number or numeral system!"<<endl;
+		return 0;
+	}
+	
 	cout << "Convert to system: ";
 	cin >> postsys;
 
@@ -64,4 +71,19 @@ string intToString(int integer)
 	temp << integer;
 	str = temp.str();
 	return str;    
+}
+
+bool validation(string forvalid, int system)
+{
+	for(int j = 0;j<forvalid.length();j++)
+	{
+		string dig;
+		int onedigit;
+		dig = forvalid[j];
+		istringstream(dig)>>onedigit;
+		if(onedigit>=system) return false;
+	}
+
+	return true;
+
 }
