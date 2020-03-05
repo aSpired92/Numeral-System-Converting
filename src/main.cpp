@@ -1,6 +1,5 @@
 #include <iostream>
 #include <cmath>
-#include <windows.h>
 #include <algorithm>
 #include <sstream>
 #include <string>
@@ -13,27 +12,58 @@ bool validation(string forvalid, int system);
 
 int main(int argc, char *argv[]) 
 {
-	system("@echo off && cls");
 
 	string number;
 	int presys, postsys;
-
-	cout << "Number: ";
-	cin >> number;
-	cout << "Numeral system of number: ";
-	cin >> presys;
-	if (!validation(number,presys))
+	char again;
+	bool exit=false;
+	cout<<endl<<"Welcome in numeral systems converter!"<<endl<<endl;
+	while(true)
 	{
-		cout<<"Wrong number or numeral system!"<<endl;
-		return 0;
+		while(true)
+		{
+			cout << "Number: ";
+			cin >> number;
+			cout << "Numeral system of number: ";
+			cin >> presys;
+			if (validation(number,presys))
+			{
+				break;
+			}
+			cout<<"Wrong number or numeral system!"<<endl;
+		}
+
+		cout << "Convert to system: ";
+		cin >> postsys;
+
+		cout<<endl<<"Number after conversion: "<<convert(number,presys,postsys)<<endl;
+		while(true)
+		{
+			cout<<"Do You want to convert another number? (y/n): ";
+			cin>>again;
+			if(again=='y')
+			{
+				break;
+				exit=false;
+				
+			}
+			else if(again=='n')
+			{
+				break;
+				exit=true;
+			}
+			else
+			{
+				cout<<"Wrong letter!"<<endl;
+			}
+			
+
+
+		}
+		
 	}
 	
-	cout << "Convert to system: ";
-	cin >> postsys;
-
-	cout<<endl<<"Number after conversion: "<<convert(number,presys,postsys)<<endl;
-
-	system("pause");
+	cout<<"Bye :D"<<endl;
 	return EXIT_SUCCESS;
 	
 }
