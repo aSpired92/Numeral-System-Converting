@@ -8,7 +8,7 @@ using namespace std;
 
 string convert(string toconv, int before, int after);
 string intToString(int integer);
-bool validation(string forvalid, int system);
+bool validation(string forvalid, int presystem, int postsystem);
 
 int main(int argc, char *argv[]) 
 {
@@ -16,8 +16,9 @@ int main(int argc, char *argv[])
 	string number;
 	int presys, postsys;
 	char again;
-	bool exit=false;
+
 	cout<<endl<<"Welcome in numeral systems converter!"<<endl<<endl;
+	
 	while(again != 'n')
 	{
 		while(true)
@@ -26,17 +27,18 @@ int main(int argc, char *argv[])
 			cin >> number;
 			cout << "Numeral system of number: ";
 			cin >> presys;
-			if (validation(number,presys))
+			cout << "Convert to system: ";
+			cin >> postsys;
+
+			if (validation(number,presys,postsys))
 			{
 				break;
 			}
 			cout<<"Wrong number or numeral system!"<<endl;
 		}
-
-		cout << "Convert to system: ";
-		cin >> postsys;
-
+		
 		cout<<endl<<"Number after conversion: "<<convert(number,presys,postsys)<<endl;
+		
 		while(true)
 		{
 			cout<<"Do You want to convert another number? (y/n): ";
@@ -47,7 +49,7 @@ int main(int argc, char *argv[])
 			{
 				break;
 			}
-			
+
 			cout<<"Wrong letter!"<<endl;
 
 
@@ -62,8 +64,9 @@ int main(int argc, char *argv[])
 
 string convert(string toconv, int before, int after)
 {
-	int x = toconv.length(), sum = 0,a;
+	int x = toconv.length(), sum = 0, a;
 	string digit;
+	
 	for(int i = 0; i < x; i++)
 	{
 		digit = toconv[x - i - 1];
@@ -83,7 +86,6 @@ string convert(string toconv, int before, int after)
 	reverse(toconv.begin(), toconv.end());
 
 	return toconv;
-
 }
 
 string intToString(int integer)
@@ -95,16 +97,18 @@ string intToString(int integer)
 	return str;    
 }
 
-bool validation(string forvalid, int system)
+bool validation(string forvalid, int presystem, int postsystem)
 {
+	if (presystem < 2 || postsystem < 2) return false;
 	for(int j = 0;j<forvalid.length();j++)
 	{
 		string dig;
 		int onedigit;
 		dig = forvalid[j];
 		istringstream(dig)>>onedigit;
-		if(onedigit>=system) return false;
+		if(onedigit>=presystem) return false;
 	}
+	
 
 	return true;
 
