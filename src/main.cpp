@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 	char again;
 	bool exit=false;
 	cout<<endl<<"Welcome in numeral systems converter!"<<endl<<endl;
-	while(true)
+	while(again != 'n')
 	{
 		while(true)
 		{
@@ -42,22 +42,13 @@ int main(int argc, char *argv[])
 			cout<<"Do You want to convert another number? (y/n): ";
 			cin>>again;
 			cout<<endl;
-			if(again=='y')
+			
+			if (again=='y' || again=='n')
 			{
 				break;
-				exit=false;
-				
-			}
-			else if(again=='n')
-			{
-				break;
-				exit=true;
-			}
-			else
-			{
-				cout<<"Wrong letter!"<<endl;
 			}
 			
+			cout<<"Wrong letter!"<<endl;
 
 
 		}
